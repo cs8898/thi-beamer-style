@@ -1,0 +1,57 @@
+\mode<presentation>
+\setbeamertemplate{background}{
+  \begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \ifnum\thepage=1\relax%
+  \fill[color=black] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  \node[anchor=south west, inner sep=0] at (0,0) {\includegraphics[width=\the\paperwidth]{./styleimg/bg.jpg}};
+  \draw[draw=none,fill=white,fill opacity=0.8] (\the\paperwidth*0.35,0) -- (\the\paperwidth,0) -- (\the\paperwidth,\the\paperheight) -- (\the\paperwidth*0.5,\the\paperheight);
+  \node[anchor=south west, inner sep=0] at (\the\paperwidth*0.6,\the\paperheight*0.6) {\includegraphics[height=2.75cm]{./styleimg/fak.png}};
+  \fi
+  %\ifnum\thepage>1\relax%
+  %  \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+  %\fi
+  \end{tikzpicture}
+}
+
+% Title page
+\defbeamertemplate*{title page}{texsx}[1][]
+{ 
+   \vskip4.5cm%
+    \begin{beamercolorbox}[#1]{title page header}
+      \usebeamerfont*{title}\hfill\inserttitle\par%
+    \end{beamercolorbox}%
+    \vskip0.75cm%
+    \begin{beamercolorbox}[#1]{author}
+      \usebeamerfont{author}\hfill\insertauthor%
+    \end{beamercolorbox}
+     \vskip1.5cm%
+    \begin{beamercolorbox}[#1]{date}
+      \usebeamerfont{date}\hfill\insertdate%
+    \end{beamercolorbox}
+  \vfill
+}
+
+%footline
+\setbeamertemplate{footline}{%
+\ifnum\thepage>1\relax%
+    \vspace*{-0.4cm}
+    \hspace{0.2cm}
+    \includegraphics[height=0.4cm]{styleimg/thi_text.pdf}%
+    \hspace{0.1cm}
+    \includegraphics[height=0.4cm]{styleimg/thi_logo.pdf}%
+    \hfill%
+    \usebeamerfont{author}
+    \usebeamercolor[thigrey]{}
+    \insertauthor, \insertdate
+    \hfill%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \insertframenumber\,/\,\inserttotalframenumber\kern1em%
+    \hspace{0.2cm}%
+    \vspace*{.2cm}%
+\fi
+}
+
+\mode
+<all>
