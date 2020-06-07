@@ -3,9 +3,107 @@
 % Requirement
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
+\RequirePackage{graphicx}
 %\RequirePackage{fontspec}
 %\RequirePackage{FiraMono}
 %\RequirePackage{opensans}
+\RequirePackage{etoolbox}
+
+%OverWrite MakeTitle and TitlePage
+\newtoggle{tpage} % note: toggles are false by default
+%\let\originaltitlepage\titlepage
+%\renewcommand{\titlepage}{
+%    \global\toggletrue{tpage}
+%    \originaltitlepage
+%    \global\togglefalse{tpage}
+%}
+
+\let\originalmaketitle\maketitle
+\renewcommand{\maketitle}{
+    \global\toggletrue{tpage}
+    \originalmaketitle
+    \global\togglefalse{tpage}
+}
+
+\AtBeginEnvironment{titlepage}{\global\toggletrue{tpage}}
+
+% Variables
+\newcommand{\thiDefaults}{
+    \def \thititlebackground {./styleimg/bg.png}
+    \def \thititlebackgroundmove {0,0} %-.1mm, -.1mm
+    \def \thititlefaklogo {./styleimg/thi_text_top_logo.pdf}
+    \def \thititlefaklogoheight {23mm}
+    \def \thititlefaklogomove {\the\paperwidth-10mm,\the\paperheight-8mm}
+    \def \thititlefak {}
+    \def \thifak{}
+    \def \thisidecolor {thiblue} %fakinfo
+    \def \thitoplogo {./styleimg/thi_logo.pdf} %thi_text.pdf %thi_logo.pdf
+    \def \thititleA {\inserttitle}
+    \def \thititleB {}
+    \def \thileftmargin {20mm}
+}
+
+\thiDefaults
+
+
+% Manual Fakulty Title
+% Is Padded To Border of Window, propapy needs move of faklogo
+% \def \thititlefakinfo {\fontsize{9}{9}\selectfont Fakultät Informatik\hspace*{.5mm}}
+\def \thititlefakwirt {\fontsize{9}{9}\selectfont
+    Fakultät für\hspace*{12.5mm}
+    \\%
+    \hfill
+    Wirtschaftsingenieurwesen\hspace*{-7mm}
+}
+
+%Fak PrepareCommands
+\newcommand{\thiPrepInfo}{
+    \def \thifak {Informatik}
+    \def \thititlebackground {./styleimg/bg_info.jpg}
+    \def \thititlefaklogo {./styleimg/fakinfo.png}
+    \def \thititlefaklogoheight {25mm}
+    \def \thititlefak {}
+    \def \thisidecolor {\thifakinfocolor}
+}
+
+\newcommand{\thiPrepElo}{
+    \def \thifak {Elektrotechnik}
+    \def \thititlebackground {./styleimg/bg_elo.png}
+    \def \thititlefaklogo {./styleimg/fakelo.png}
+    \def \thititlefaklogoheight {25mm}
+    \def \thititlefak {}
+    \def \thisidecolor {\thifakelocolor}
+}
+
+\newcommand{\thiPrepMasch}{
+    \def \thifak {Maschinenbau}
+    \def \thititlebackground {./styleimg/bg_masch.png}
+    \def \thititlefaklogo {./styleimg/fakmasch.png}
+    \def \thititlefaklogoheight {25mm}
+    \def \thititlefak {}
+    \def \thisidecolor {\thifakmaschcolor}
+}
+
+\newcommand{\thiPrepWirt}{
+    \def \thifak {Wirtschaftsingenieurwesen}
+    %\def \thititlebackground {./styleimg/bg_masch.png}
+    %\def \thititlefaklogo {./styleimg/fakmasch.png}
+    \def \thititlefaklogoheight {20mm}
+    \def \thititlefaklogomove {\the\paperwidth-15.5mm,\the\paperheight-8mm}
+    \def \thititlefak {\thititlefakwirt}
+    \def \thisidecolor {\thifakwirtcolor}
+}
+
+\newcommand{\thiPrepBus}{
+    \def \thifak {Business School}
+    \def \thititlebackground {./styleimg/bg_bus.png}
+    \def \thititlefaklogo {./styleimg/fakbus.png}
+    \def \thititlefak {}
+    \def \thisidecolor {\thifakbuscolor}
+}
+
+% Margin Left
+\setbeamersize{text margin left=\thileftmargin}
 
 % Settings
 \useinnertheme{thi}

@@ -2,30 +2,43 @@
 \setbeamertemplate{background}{
   \begin{tikzpicture}
   \useasboundingbox (0,0) rectangle(\the\paperwidth,\the\paperheight);
-  \ifnum\thepage=1\relax%
-  \fill[color=black] (0,0) rectangle(\the\paperwidth,\the\paperheight);
-  \node[anchor=south west, inner sep=0] at (0,0) {\includegraphics[width=\the\paperwidth]{./styleimg/bg.jpg}};
-  \draw[draw=none,fill=white,fill opacity=0.8] (\the\paperwidth*0.35,0) -- (\the\paperwidth,0) -- (\the\paperwidth,\the\paperheight) -- (\the\paperwidth*0.5,\the\paperheight);
-  \node[anchor=south west, inner sep=0] at (\the\paperwidth*0.6,\the\paperheight*0.6) {\includegraphics[height=2.75cm]{./styleimg/fak.png}};
-  \fi
-  %\ifnum\thepage>1\relax%
-  %  \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
-  %\fi
+  \iftoggle{tpage}{%Title Page
+    %Black Plane
+    \draw[fill=black] (0,0) rectangle(\the\paperwidth,\the\paperheight);
+    %Background
+    \node[anchor=south west, inner sep=0] at (\thititlebackgroundmove) {\includegraphics[width=\the\paperwidth,height=\the\paperheight]{\thititlebackground}};
+    %White Diagonale
+    \draw[draw=none,fill=white,fill opacity=.9] (\the\paperwidth*0.40,0) -- (\the\paperwidth,0) -- (\the\paperwidth,\the\paperheight) -- (\the\paperwidth*0.60,\the\paperheight);
+    %Fak Logo
+    \node[anchor=north east, inner sep=0] at (\thititlefaklogomove) {\includegraphics[height=\thititlefaklogoheight]{\thititlefaklogo}};
+  }{
+    %Inner Pages
+    %header Logo
+    \node[anchor=north east, inner sep=0] at (\the\paperwidth-4mm,\the\paperheight-2mm) {\includegraphics[height=8mm]{\thitoplogo}};
+    %side bar
+    \draw[draw=none,fill=\thisidecolor] (0,6mm)[rounded corners=.5mm] -- (4mm,6mm)[rounded corners=2mm] -- (4mm,\the\paperheight*0.80) -- (0,\the\paperheight*0.80);
+  }
+  
   \end{tikzpicture}
 }
 
 % Title page
 \defbeamertemplate*{title page}{texsx}[1][]
-{ 
-   \vskip4.5cm%
-    \begin{beamercolorbox}[#1]{title page header}
-      \usebeamerfont*{title}\hfill\inserttitle\par%
+{
+   \vskip \dimexpr(\thititlefaklogoheight+8mm)%
+   \begin{beamercolorbox}[#1]{title page header}
+   \usebeamerfont*{title}\hfill\thititlefak\par%
+   \end{beamercolorbox}
+   \vskip 10mm 
+   \begin{beamercolorbox}[#1]{title page header}
+      \usebeamerfont*{title}\hfill\thititleA\par%
+      \usebeamerfont*{title}\hfill\thititleB\par%
     \end{beamercolorbox}%
-    \vskip0.75cm%
+    \vskip 0.75cm%
     \begin{beamercolorbox}[#1]{author}
       \usebeamerfont{author}\hfill\insertauthor%
     \end{beamercolorbox}
-     \vskip1.5cm%
+     \vskip 1.2cm%
     \begin{beamercolorbox}[#1]{date}
       \usebeamerfont{date}\hfill\insertdate%
     \end{beamercolorbox}
@@ -34,23 +47,20 @@
 
 %footline
 \setbeamertemplate{footline}{%
-\ifnum\thepage>1\relax%
+\nottoggle{tpage}{\relax%
     \vspace*{-0.4cm}
-    \hspace{0.2cm}
-    \includegraphics[height=0.4cm]{styleimg/thi_text.pdf}%
-    \hspace{0.1cm}
-    \includegraphics[height=0.4cm]{styleimg/thi_logo.pdf}%
-    \hfill%
+    \hspace{4mm}
+    %\hfill%
     \usebeamerfont{author}
     \usebeamercolor[thigrey]{}
-    \insertauthor, \insertdate
+    \inserttitle{} | \insertauthor{} | \insertdate
     \hfill%
     \usebeamercolor[fg]{page number in head/foot}%
     \usebeamerfont{page number in head/foot}%
     \insertframenumber\,/\,\inserttotalframenumber\kern1em%
     \hspace{0.2cm}%
     \vspace*{.2cm}%
-\fi
+}{}
 }
 
 \mode

@@ -1,7 +1,23 @@
 \mode<presentation>
 
-\definecolor{thiblue}{HTML}{00599c}
+% Base Colors
+\definecolor{thiblue}{HTML}{025B9C}
+\definecolor{thibluedark}{HTML}{005a9b}
+\definecolor{thiyellow}{HTML}{96be00}
+\definecolor{thigreen}{HTML}{009664}
+\definecolor{thired}{HTML}{e6320f}
+\definecolor{thiorange}{HTML}{F08200}
+\definecolor{thiyellowit}{HTML}{D7D700}
+\definecolor{thiburgundy}{HTML}{871932}
+
 \definecolor{thigrey}{HTML}{575756}
+
+% Fakultäten
+\def \thifakinfocolor {thiyellowit}
+\def \thifakelocolor {thiyellow}
+\def \thifakmaschcolor {thigreen}
+\def \thifakwirtcolor {thiorange}
+\def \thifakbuscolor {thired}
 
 % Settings
 \setbeamercolor*{title page header}{fg=thiblue}
@@ -11,6 +27,19 @@
 \setbeamercolor{frametitle}{fg=thiblue}
 \setbeamercolor{structure}{fg=thiblue} % itemize, enumerate, etc
 \setbeamercolor{section in toc}{fg=thiblue} % TOC sections
+
+\setbeamercolor{alerted}{fg=thired}
+
+\setbeamercolor{block title}{use=structure,bg=thiblue!20!white,fg=thiblue}
+\setbeamercolor{block body}{use=structure,bg=thiblue!10!white}
+
+%\setbeamercolor{block title alerted}{use=structure,bg=thired,fg=white}
+\setbeamercolor{block title alerted}{use=structure,bg=thired!20!white,fg=thired}
+\setbeamercolor{block body alerted}{use=structure,bg=thired!10!white}
+
+%\setbeamercolor{block title example}{use=structure,bg=thigreen,fg=white}
+\setbeamercolor{block title example}{use=structure,bg=thigreen!20!white,fg=thigreen}
+\setbeamercolor{block body example}{use=structure,bg=thigreen!10!white}
 
 \mode
 <all>

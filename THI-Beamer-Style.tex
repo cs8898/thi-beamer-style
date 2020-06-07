@@ -1,13 +1,14 @@
 \documentclass[aspectratio=169]{beamer}
 
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-\usepackage[T1]{fontenc}
 
 \usepackage{tabularx}
 \usepackage{verbatim}
 \usepackage{listings}
 \usepackage{hyperref}
+\usepackage{listings}
 
 \title{THI Beamer - Sample}
 \date{\today}
@@ -17,8 +18,18 @@
 
 \begin{document}
 
+% Prepare Fakultät
+%\thiPrepInfo
+%\thiPrepElo
+%\thiPrepMasch
+%\thiPrepBus
+
+%Overwrite ThemeOptions
+%\def \thititleA {THI Beamer - Sample} %Autofilled by Defaults
+\def \thititleB {Präsentationen mit \LaTeX}
+
 %\begin{frame}
-%    \titlepage
+%    \titlepage   % Leads To Failures use \maketitle
 %\end{frame}
 
 \maketitle
@@ -43,12 +54,142 @@
 \end{frame}
 
 \section{An Other Proofe}  
-\begin{frame}
-    \frametitle{A longer title}
+\begin{frame}[fragile]
+    \frametitle{\secname}
     \begin{itemize}
-    \item one
-    \item two
+    \item Automatic Insert Section Title
     \end{itemize}
+    \begin{example}
+        \begin{lstlisting}
+    \frametitle{\secname}
+    %\subsecname      % Current SubSection
+    %\subsubsecname   % Current SubSubSection
+        \end{lstlisting}
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Block Environments}
+    \begin{block}{Block}
+        \texttt{block} Environment
+    \end{block}
+    \begin{example}
+        \texttt{example} Environment
+    \end{example}
+    \begin{exampleblock}{ExampleBlock}
+        \texttt{exampleblock} Environment
+    \end{exampleblock}
+    \begin{alertblock}{AlertBlock}
+        \texttt{alertblock} Environment
+    \end{alertblock}
+\end{frame}
+
+%\thiPrepInfo
+%\thiPrepElo
+%\thiPrepMasch
+%\thiPrepWirt
+%\thiPrepBus
+
+\section{Verschiedene Fakultäten}
+\begin{frame}
+    \frametitle{Verschiedene Fakultäten}
+    \begin{alertblock}{Fak spezifische Prepare Befehle}
+        Nutze die flolgenden Befehler in der Preamble\\
+        Verwende ausschließlich \texttt{\textbackslash maketitle} (\texttt{\textbackslash titlepage} produziert Fehler)
+    \end{alertblock}
+    \begin{itemize}
+        \item \textcolor{thiblue}{DEFAULTS} \texttt \texttt{\textbackslash thiDefaults}
+        \item \textcolor{\thifakinfocolor}{Informatik} \texttt{\textbackslash thiPrepInfo}
+        \item \textcolor{\thifakelocolor}{Elektrotechnik} \texttt{\textbackslash thiPrepElo}
+        \item \textcolor{\thifakmaschcolor}{Maschinenbau} \texttt{\textbackslash thiPrepMasch}
+        \item \textcolor{\thifakwirtcolor}{Wirtschaftsingenieurwesen} \texttt{\textbackslash thiPrepWirt} (Fehlend Hintergrund und Faklog)
+        \item \textcolor{\thifakbuscolor}{Business School} \texttt{\textbackslash thiPrepBus}
+    \end{itemize}
+\end{frame}
+
+\thiDefaults
+\thiPrepInfo
+\subsection{\thifak}
+\def \thititleB {\thifak}
+\maketitle
+
+\begin{frame}[fragile]
+    \frametitle{\thifak}
+    \begin{lstlisting}[language=TeX]
+        \thiPrepInfo
+    \end{lstlisting}
+\end{frame}
+
+\thiDefaults
+\thiPrepElo
+\subsection{\thifak}
+\def \thititleB {\thifak}
+\maketitle
+
+\begin{frame}[fragile]
+    \frametitle{\thifak}
+    \begin{lstlisting}[language=TeX]
+        \thiPrepElo
+    \end{lstlisting}
+\end{frame}
+
+\thiDefaults
+\thiPrepMasch
+\subsection{\thifak}
+\def \thititleB {\thifak}
+\maketitle
+
+\begin{frame}[fragile]
+    \frametitle{\thifak}
+    \begin{lstlisting}[language=TeX]
+        \thiPrepMasch
+    \end{lstlisting}
+\end{frame}
+
+\thiDefaults
+\thiPrepWirt
+\subsection{\thifak}
+\def \thititleB {\thifak}
+\maketitle
+
+\begin{frame}[fragile]
+    \frametitle{\thifak}
+    \begin{lstlisting}[language=TeX]
+        \thiPrepWirt
+    \end{lstlisting}
+\end{frame}
+
+\thiDefaults
+\thiPrepBus
+\subsection{\thifak}
+\def \thititleB {\thifak}
+\maketitle
+
+\begin{frame}[fragile]
+    \frametitle{\thifak}
+    \begin{lstlisting}[language=TeX]
+        \thiPrepBus
+    \end{lstlisting}
+\end{frame}
+
+\thiDefaults
+\section{Parameter}
+\begin{frame}[fragile]
+    \frametitle{\secname}
+    \begin{lstlisting}[language=TeX]
+\def \thititlebackground {./styleimg/bg.png}
+\def \thititlebackgroundmove {0,0} %-.1mm, -.1mm
+\def \thititlefaklogo {./styleimg/thi_text_top_logo.pdf}
+\def \thititlefaklogoheight {23mm}
+\def \thititlefak {}
+\def \thifak{}
+\def \thisidecolor {thiblue} %fakinfo
+\def \thitoplogo {./styleimg/thi_logo.pdf}
+    %thi_text.pdf %thi_text_logo.pdf
+\def \thititleA {\inserttitle}
+\def \thititleB {}
+\def \thileftmargin {20mm} 
+    \end{lstlisting}
 \end{frame}
 
 \end{document}
